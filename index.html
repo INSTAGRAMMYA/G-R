@@ -6,11 +6,12 @@
   <title>Undangan Pernikahan Gunawan & Rafikah</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
     * {margin:0; padding:0; box-sizing:border-box;}
 
     body {
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      color: #333;
       overflow-x: hidden;
     }
 
@@ -33,55 +34,35 @@
       font-size: 60px;
       color: #d4af37;
       margin-bottom: 10px;
-      animation: scaleUp 2s ease forwards;
+      animation: smoothScale 2s ease forwards;
     }
 
     #splash p {
       font-size: 18px;
       color: #555;
+      animation: fadeInText 2s ease forwards;
     }
 
-    @keyframes fadeOutSplash {
-      to {opacity:0; visibility:hidden;}
-    }
+    @keyframes fadeOutSplash { to {opacity:0; visibility:hidden;} }
+    @keyframes smoothScale { 0% {transform: scale(0.8); opacity:0;} 50% {transform: scale(1.05); opacity:1;} 100% {transform: scale(1); opacity:1;} }
+    @keyframes fadeInText { from {opacity:0;} to {opacity:1;} }
 
-    @keyframes scaleUp {
-      from {transform: scale(0.5); opacity:0;}
-      to {transform: scale(1); opacity:1;}
-    }
-
-    /* Background Kelopak */
-    .petal {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #f7d1c4;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-      0% {transform: translateY(-50px) rotate(0deg);}
-      100% {transform: translateY(110vh) rotate(360deg);}
-    }
-
+    /* Header */
     header {
       padding: 40px 20px;
       background: linear-gradient(135deg, #d4af37, #f7e7b0);
       color: white;
       text-align: center;
-      animation: slideDown 1.5s ease;
+      animation: fadeHeader 2s ease forwards;
+      position: relative;
+      overflow: hidden;
     }
-
-    @keyframes slideDown {
-      from {transform: translateY(-50px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
+    @keyframes fadeHeader { from {opacity:0; transform: translateY(-20px);} to {opacity:1; transform: translateY(0);} }
 
     h1 { font-family: 'Great Vibes', cursive; font-size: 48px; margin: 0; }
     h2 { margin: 5px 0 0; font-size: 20px; font-weight: 300; }
 
+    /* Cards */
     .card {
       background: #fff;
       margin: 20px auto;
@@ -91,28 +72,23 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       transition: transform 0.4s, box-shadow 0.4s;
       animation: zoomIn 1.5s ease;
+      position: relative;
+      overflow: hidden;
       cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: translateY(-10px) scale(1.03);
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
-    @keyframes zoomIn {
-      from {transform: scale(0.9); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
+    @keyframes zoomIn { from {transform: scale(0.9); opacity:0;} to {transform: scale(1); opacity:1;} }
 
     .card h3 { color: #d4af37; margin-bottom: 10px; }
-
     a { color: #d4af37; text-decoration: none; font-weight: 600; }
-
     .rekening { margin-top: 10px; font-weight: bold; color: #444; }
 
-    /* Musik */
     .music-control { margin: 20px auto; text-align:center; }
-
     button {
       background: #d4af37;
       border: none;
@@ -123,8 +99,19 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     button:hover { background: #b8961d; }
+
+    /* Kelopak lembut sekitar header dan kartu */
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 6px;
+      background: rgba(212, 175, 55, 0.4);
+      border-radius: 50% 50% 50% 50%;
+      opacity: 0.6;
+      animation: fall 6s linear infinite;
+    }
+    @keyframes fall { 0% {transform: translateY(-10px) rotate(0deg);} 100% {transform: translateY(100%); rotate: 180deg;} }
   </style>
 </head>
 <body>
@@ -134,9 +121,6 @@
     <h1>Gunawan & Rafikah</h1>
     <p>Undangan Pernikahan</p>
   </div>
-
-  <!-- Kelopak Bunga -->
-  <div id="petals"></div>
 
   <header>
     <h1>Gunawan & Rafikah</h1>
@@ -174,17 +158,21 @@
       else music.pause();
     }
 
-    // Kelopak bunga
-    const petalsContainer = document.getElementById("petals");
-    for(let i=0;i<50;i++){
-      const petal = document.createElement("div");
-      petal.classList.add("petal");
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = 3 + Math.random() * 5 + "s";
-      petal.style.width = 10 + Math.random() * 20 + "px";
-      petal.style.height = petal.style.width;
-      petalsContainer.appendChild(petal);
+    // Tambahkan kelopak lembut di header dan kartu
+    function createPetals(container, count) {
+      for(let i=0; i<count; i++){
+        const petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left = Math.random() * container.offsetWidth + "px";
+        petal.style.animationDuration = 4 + Math.random() * 4 + "s";
+        petal.style.width = 8 + Math.random() * 15 + "px";
+        petal.style.height = petal.style.width / 2;
+        container.appendChild(petal);
+      }
     }
+
+    const headers = document.querySelectorAll('header, .card');
+    headers.forEach(el => createPetals(el, 5)); // 5 kelopak per container
   </script>
 
 </body>
