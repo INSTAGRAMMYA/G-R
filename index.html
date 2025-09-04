@@ -1,69 +1,128 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Gunawan & Rafikah</title>
-    <!-- Import font Mishka -->
-    <link href="https://fonts.googleapis.com/css2?family=Mishka&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100%;
-            font-family: 'Mishka', cursive;
-            background: #87CEEB; /* langit biru */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Gunawan & Rafikah</title>
+<link href="https://fonts.googleapis.com/css2?family=Mishka&display=swap" rel="stylesheet">
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: 'Mishka', cursive;
+        background: linear-gradient(to top, #87CEEB 0%, #a0d8ef 100%);
+    }
 
-        /* Latar air bergerak */
-        .water {
-            position: absolute;
-            bottom: 0;
-            width: 200%;
-            height: 40%;
-            background: url('https://i.ibb.co/r5d4qgF/water.png') repeat-x;
-            background-size: cover;
-            animation: wave 10s linear infinite;
-            z-index: 1;
-        }
+    /* Nama pengantin */
+    .names {
+        position: absolute;
+        top: 15%;
+        width: 100%;
+        text-align: center;
+        font-size: 3em;
+        color: white;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        z-index: 10;
+    }
 
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+    /* Air bergelombang */
+    .water {
+        position: absolute;
+        bottom: 0;
+        width: 200%;
+        height: 40%;
+        background: #1E90FF;
+        border-radius: 50%;
+        animation: wave 6s ease-in-out infinite;
+        z-index: 1;
+        opacity: 0.8;
+    }
 
-        /* Nama pengantin */
-        .names {
-            position: absolute;
-            top: 20%;
-            width: 100%;
-            text-align: center;
-            font-size: 3em;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            z-index: 2;
-        }
+    @keyframes wave {
+        0% { transform: translateX(0) translateY(0); }
+        50% { transform: translateX(-50%) translateY(15px); }
+        100% { transform: translateX(0) translateY(0); }
+    }
 
-        /* Angsa animasi */
-        .swan {
-            position: absolute;
-            width: 100px;
-            animation: floatSwan 12s ease-in-out infinite;
-            z-index: 2;
-        }
+    /* Angsa sederhana */
+    .swan {
+        position: absolute;
+        width: 60px;
+        height: 40px;
+        background: white;
+        border-radius: 50% 50% 0 0;
+        top: 40%;
+        animation: fly linear infinite;
+        z-index: 5;
+    }
 
-        @keyframes floatSwan {
-            0% { transform: translateX(-150px) translateY(0) rotate(0deg);}
-            50% { transform: translateX(100vw) translateY(-50px) rotate(10deg);}
-            100% { transform: translateX(-150px) translateY(0) rotate(0deg);}
-        }
-    </style>
+    .swan::before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 10px;
+        background: white;
+        top: -10px;
+        left: 15px;
+        border-radius: 50%;
+        transform: rotate(-45deg);
+    }
+
+    .swan::after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: orange;
+        top: 15px;
+        left: -5px;
+        border-radius: 50%;
+    }
+
+    /* Animasi terbang acak untuk beberapa angsa */
+    @keyframes fly {
+        0% { transform: translateX(-100px) translateY(0) rotate(0deg);}
+        50% { transform: translateX(110vw) translateY(-30px) rotate(10deg);}
+        100% { transform: translateX(-100px) translateY(0) rotate(0deg);}
+    }
+
+    /* Variasi angsa */
+    .swan:nth-child(2) {
+        top: 50%;
+        animation-duration: 14s;
+        animation-delay: 2s;
+    }
+
+    .swan:nth-child(3) {
+        top: 45%;
+        animation-duration: 10s;
+        animation-delay: 4s;
+    }
+
+    /* Refleksi air */
+    .reflection {
+        position: absolute;
+        bottom: 0;
+        width: 200%;
+        height: 40%;
+        background: linear-gradient(to top, rgba(255,255,255,0.3), transparent);
+        border-radius: 50%;
+        animation: wave 6s ease-in-out infinite;
+        z-index: 2;
+    }
+</style>
 </head>
 <body>
     <div class="names">GUNAWAN & RAFIKAH</div>
-    <!-- Tambahkan angsa -->
-    <img src="https://i.ibb.co/0F1c5nL/swan.png" class="swan" alt="Angsa">
+
+    <!-- Beberapa angsa -->
+    <div class="swan"></div>
+    <div class="swan"></div>
+    <div class="swan"></div>
+
     <div class="water"></div>
+    <div class="reflection"></div>
 </body>
 </html>
