@@ -6,135 +6,47 @@
   <title>Undangan Pernikahan Gunawan & Rafikah</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fdfbfb;
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    /* Halaman Depan */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #fdfbfb; color: #333; overflow-x: hidden; }
     #landing {
-      position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      z-index: 9999;
-      text-align: center;
-      padding: 20px;
-      overflow: hidden;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 20px; overflow: hidden; z-index: 9999;
+      background: url('https://www.vecteezy.com/free-photos/flower-background') no-repeat center center fixed;
+      background-size: cover;
     }
-
-    #landing h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 60px;
-      color: #d4af37;
-      margin-bottom: 10px;
-      animation: smoothScale 2s ease forwards;
-    }
-
-    #landing p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-      animation: fadeInText 2s ease forwards;
-    }
-
-    #enter-btn {
-      padding: 12px 30px;
-      font-size: 18px;
-      background: #d4af37;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    #landing h1 { font-family: 'Great Vibes', cursive; font-size: 60px; color: #d4af37; margin-bottom: 10px; animation: smoothScale 2s ease forwards; }
+    #landing p { font-size: 18px; color: #555; margin-bottom: 30px; animation: fadeInText 2s ease forwards; }
+    #enter-btn { padding: 12px 30px; font-size: 18px; background: #d4af37; color: white; border: none; border-radius: 30px; cursor: pointer; transition: .3s; }
     #enter-btn:hover { background: #b8961d; }
-
-    @keyframes smoothScale { 0% {transform: scale(0.8); opacity:0;} 50% {transform: scale(1.05); opacity:1;} 100% {transform: scale(1); opacity:1;} }
-    @keyframes fadeInText { from {opacity:0;} to {opacity:1;} }
-
-    /* Ornamen background sederhana */
-    .ornament {
-      position: absolute;
-      border: 2px solid rgba(212,175,55,0.3);
-      width: 80%;
-      height: 80%;
-      border-radius: 20px;
-      top: 10%;
-      left: 10%;
-      pointer-events: none;
-      animation: floatOrnament 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatOrnament {
-      0% {transform: translateY(0px) rotate(0deg);}
-      50% {transform: translateY(10px) rotate(2deg);}
-      100% {transform: translateY(0px) rotate(0deg);}
-    }
-
-    /* Layer Utama */
+    @keyframes smoothScale { 0% { transform: scale(0.8); opacity: 0; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes fadeInText { from { opacity: 0; } to { opacity: 1; } }
+    .blossom { position: absolute; width: 20px; height: 20px; background: rgba(212, 175, 55, 0.5); border-radius: 50%; animation: fallBlossom 6s linear infinite; }
+    @keyframes fallBlossom { 0% { transform: translateY(-20px) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
     #main-content { display: none; }
-
-    header {
-      padding: 40px 20px;
-      background: linear-gradient(135deg, #d4af37, #f7e7b0);
-      color: white;
-      text-align: center;
-      animation: fadeHeader 2s ease forwards;
-      position: relative;
-      overflow: hidden;
-    }
-    @keyframes fadeHeader { from {opacity:0; transform: translateY(-20px);} to {opacity:1; transform: translateY(0);} }
-
+    header { padding: 40px 20px; background: linear-gradient(135deg, #d4af37, #f7e7b0); color: white; text-align: center; position: relative; overflow: hidden; animation: fadeHeader 2s ease forwards; }
+    @keyframes fadeHeader { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
     h1 { font-family: 'Great Vibes', cursive; font-size: 48px; margin: 0; }
     h2 { margin: 5px 0 0; font-size: 20px; font-weight: 300; }
-
-    .card {
-      background: #fff;
-      margin: 20px auto;
-      padding: 25px;
-      border-radius: 15px;
-      max-width: 500px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      transition: transform 0.4s, box-shadow 0.4s;
-      animation: zoomIn 1.5s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
-    @keyframes zoomIn { from {transform: scale(0.9); opacity:0;} to {transform: scale(1); opacity:1;} }
-
-    .card h3 { color: #d4af37; margin-bottom: 10px; }
-    a { color: #d4af37; text-decoration: none; font-weight: 600; }
-    .rekening { margin-top: 10px; font-weight: bold; color: #444; }
-
-    .music-control { margin: 20px auto; text-align:center; }
+    .card { background: #fff; margin: 20px auto; padding: 25px; border-radius: 15px; max-width: 700px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); animation: zoomIn 1.5s ease; display: grid; grid-template-columns: auto 150px; grid-gap: 20px; align-items: center; }
+    .card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
+    @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .card-content { display: flex; flex-direction: column; }
+    .card img { width: 100%; border-radius: 10px; }
+    .map-logo, .bank-logo { width: 120px; height: auto; border-radius: 10px; }
+    .music-control { margin: 20px auto; text-align: center; }
     button { background: #d4af37; border: none; padding: 10px 25px; font-size: 16px; color: white; border-radius: 30px; cursor: pointer; transition: 0.3s; }
     button:hover { background: #b8961d; }
-
-    /* Kelopak lembut */
-    .petal { position: absolute; width: 12px; height: 6px; background: rgba(212, 175, 55, 0.4); border-radius: 50%; opacity: 0.6; animation: fall 6s linear infinite; }
-    @keyframes fall { 0% {transform: translateY(-10px) rotate(0deg);} 100% {transform: translateY(100%); rotate: 180deg;} }
   </style>
 </head>
 <body>
 
-  <!-- Halaman Depan -->
   <div id="landing">
-    <div class="ornament"></div>
     <h1>Gunawan & Rafikah</h1>
     <p>Undangan Pernikahan</p>
     <button id="enter-btn">Buka Undangan</button>
   </div>
 
-  <!-- Layer Utama -->
   <div id="main-content">
     <header>
       <h1>Gunawan & Rafikah</h1>
@@ -142,17 +54,27 @@
     </header>
 
     <div class="card">
-      <h3>Akad Nikah</h3>
-      <p>Sabtu, 13 September 2025<br>Pukul 08:00 WIB</p>
+      <div class="card-content">
+        <h3>Akad Nikah</h3>
+        <p>Sabtu, 13 September 2025<br>Pukul 08:00 WIB</p>
+      </div>
+      <img src="https://www.vecteezy.com/free-photos/wedding-flowers-background" alt="Mempelai" title="Mempelai menikah">
+    </div>
 
-      <h3>Resepsi</h3>
-      <p>Minggu, 14 September 2025<br>Pukul 07:00 - selesai</p>
+    <div class="card">
+      <div class="card-content">
+        <h3>Lokasi</h3>
+        <p><a href="https://maps.app.goo.gl/EQRXJTAUZgwjqUt96" target="_blank">📍 Lihat di Google Maps</a></p>
+      </div>
+      <img src="https://www.vecteezy.com/free-photos/wedding-flowers-background" class="map-logo" alt="Peta" title="Lokasi">
+    </div>
 
-      <h3>Lokasi</h3>
-      <p><a href="https://maps.app.goo.gl/EQRXJTAUZgwjqUt96" target="_blank">📍 Lihat di Google Maps</a></p>
-
-      <h3>Amplop Digital</h3>
-      <p class="rekening">Bank BRI<br>014701032622505<br>a.n. Gunawan</p>
+    <div class="card">
+      <div class="card-content">
+        <h3>Amplop Digital</h3>
+        <p class="rekening">Bank BRI<br>014701032622505<br>a.n. Gunawan</p>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/BRI_logo.svg" class="bank-logo" alt="BRI Logo">
     </div>
 
     <div class="music-control">
@@ -160,35 +82,36 @@
     </div>
 
     <audio id="bg-music" loop>
-      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+      <source src="https://archive.org/download/nadhif-basalamah-penjaga-hati/nadhif-basalamah-penjaga-hati.mp3" type="audio/mpeg">
       Browser kamu tidak mendukung audio.
     </audio>
   </div>
 
   <script>
-    const music = document.getElementById("bg-music");
-    function toggleMusic() { if(music.paused) music.play(); else music.pause(); }
-
-    // Tombol buka undangan
     document.getElementById("enter-btn").addEventListener("click", () => {
       document.getElementById("landing").style.display = "none";
       document.getElementById("main-content").style.display = "block";
 
-      // Tambahkan kelopak lembut di header dan kartu
-      function createPetals(container, count) {
-        for(let i=0;i<count;i++){
-          const petal = document.createElement("div");
-          petal.classList.add("petal");
-          petal.style.left = Math.random() * container.offsetWidth + "px";
-          petal.style.animationDuration = 4 + Math.random() * 4 + "s";
-          petal.style.width = 8 + Math.random() * 15 + "px";
-          petal.style.height = petal.style.width / 2;
-          container.appendChild(petal);
+      function createBlossoms(container, count) {
+        for (let i = 0; i < count; i++) {
+          const b = document.createElement("div");
+          b.classList.add("blossom");
+          b.style.left = Math.random() * container.offsetWidth + "px";
+          b.style.animationDuration = 4 + Math.random() * 4 + "s";
+          container.appendChild(b);
         }
       }
-      const headers = document.querySelectorAll('header, .card');
-      headers.forEach(el => createPetals(el, 5));
+      document.querySelectorAll('header, .card').forEach(el => createBlossoms(el, 5));
     });
+
+    const music = document.getElementById("bg-music");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
   </script>
 
 </body>
