@@ -4,94 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Undangan Pernikahan Gunawan & Rafikah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-      text-align: center;
       margin: 0;
-      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      color: #333;
+      text-align: center;
       animation: fadeIn 2s ease-in-out;
     }
-    header {
-      background: #fff;
-      padding: 30px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      font-size: 28px;
-      margin: 0;
-      color: #444;
-    }
-    .content {
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    .card {
-      background: #fff;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      animation: slideUp 1s ease;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #0056b3;
-    }
+
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
     }
-    @keyframes slideUp {
-      from {transform: translateY(20px); opacity: 0;}
+
+    header {
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #d4af37, #f7e7b0);
+      color: white;
+      animation: slideDown 1.5s ease;
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
       to {transform: translateY(0); opacity: 1;}
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      margin: 0;
+    }
+
+    h2 {
+      margin: 5px 0 0;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .card {
+      background: #fff;
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 500px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: zoomIn 1.5s ease;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.9); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    .card h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .rekening {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    /* Tombol Musik */
+    .music-control {
+      margin: 20px auto;
+    }
+
+    button {
+      background: #d4af37;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #b8961d;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Undangan Pernikahan</h1>
-    <p>Gunawan & Rafikah</p>
+    <h1>Gunawan & Rafikah</h1>
+    <h2>Undangan Pernikahan</h2>
   </header>
 
-  <div class="content">
-    <div class="card">
-      <h2>Akad Nikah</h2>
-      <p>Sabtu, 13 September 2025<br>Pukul 08:00 WIB</p>
-    </div>
+  <div class="card">
+    <h3>Akad Nikah</h3>
+    <p>Sabtu, 13 September 2025<br>Pukul 08:00 WIB</p>
 
-    <div class="card">
-      <h2>Resepsi</h2>
-      <p>Minggu, 14 September 2025<br>Pukul 07:00 - Selesai</p>
-      <a class="btn" href="https://maps.app.goo.gl/EQRXJTAUZgwjqUt96" target="_blank">Lihat Lokasi</a>
-    </div>
+    <h3>Resepsi</h3>
+    <p>Minggu, 14 September 2025<br>Pukul 07:00 - selesai</p>
 
-    <div class="card">
-      <h2>Amplop Digital</h2>
-      <p>Bank BRI<br>
-      014701032622505<br>
-      a.n. Gunawan</p>
-      <a class="btn" onclick="copyRek()">Copy Nomor Rekening</a>
-    </div>
+    <h3>Lokasi</h3>
+    <p><a href="https://maps.app.goo.gl/EQRXJTAUZgwjqUt96" target="_blank">📍 Lihat di Google Maps</a></p>
+
+    <h3>Amplop Digital</h3>
+    <p class="rekening">Bank BRI<br>014701032622505<br>a.n. Gunawan</p>
   </div>
 
+  <div class="music-control">
+    <button onclick="toggleMusic()">🎵 Putar / Hentikan Musik</button>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
   <script>
-    function copyRek() {
-      navigator.clipboard.writeText("014701032622505")
-        .then(() => alert("Nomor rekening berhasil disalin!"))
-        .catch(err => alert("Gagal menyalin: " + err));
+    const music = document.getElementById("bg-music");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
     }
   </script>
+
 </body>
 </html>
