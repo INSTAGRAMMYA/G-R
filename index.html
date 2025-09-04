@@ -6,123 +6,84 @@
 <title>Undangan Gunawan & Rafikah</title>
 <link href="https://fonts.googleapis.com/css2?family=Mishka&display=swap" rel="stylesheet">
 <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: 'Mishka', cursive;
-        background: linear-gradient(to top, #87CEEB 0%, #a0d8ef 100%);
-    }
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Mishka', cursive;
+    background: linear-gradient(to top, #87CEEB 0%, #a0d8ef 100%);
+}
 
-    /* Nama pengantin */
-    .names {
-        position: absolute;
-        top: 15%;
-        width: 100%;
-        text-align: center;
-        font-size: 3em;
-        color: white;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        z-index: 10;
-    }
+/* Nama pengantin */
+.names {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    z-index: 10;
+}
 
-    /* Air bergelombang */
-    .water {
-        position: absolute;
-        bottom: 0;
-        width: 200%;
-        height: 40%;
-        background: #1E90FF;
-        border-radius: 50%;
-        animation: wave 6s ease-in-out infinite;
-        z-index: 1;
-        opacity: 0.8;
-    }
+/* Air bergerak dengan gelombang SVG */
+.water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231E90FF" fill-opacity="1" d="M0,128L60,144C120,160,240,192,360,181.3C480,171,600,117,720,112C840,107,960,149,1080,160C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>') repeat-x;
+    background-size: cover;
+    animation: wave 8s linear infinite;
+    z-index: 1;
+}
 
-    @keyframes wave {
-        0% { transform: translateX(0) translateY(0); }
-        50% { transform: translateX(-50%) translateY(15px); }
-        100% { transform: translateX(0) translateY(0); }
-    }
+/* Gelombang animasi */
+@keyframes wave {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1440px; }
+}
 
-    /* Angsa sederhana */
-    .swan {
-        position: absolute;
-        width: 60px;
-        height: 40px;
-        background: white;
-        border-radius: 50% 50% 0 0;
-        top: 40%;
-        animation: fly linear infinite;
-        z-index: 5;
-    }
+/* Angsa dengan SVG */
+.swan {
+    position: absolute;
+    width: 60px;
+    top: 50%;
+    animation: fly 12s linear infinite;
+    z-index: 5;
+}
 
-    .swan::before {
-        content: '';
-        position: absolute;
-        width: 30px;
-        height: 10px;
-        background: white;
-        top: -10px;
-        left: 15px;
-        border-radius: 50%;
-        transform: rotate(-45deg);
-    }
+.swan svg {
+    width: 100%;
+    height: auto;
+}
 
-    .swan::after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: orange;
-        top: 15px;
-        left: -5px;
-        border-radius: 50%;
-    }
+@keyframes fly {
+    0% { transform: translateX(-80px) translateY(0) rotate(0deg);}
+    50% { transform: translateX(110vw) translateY(-20px) rotate(10deg);}
+    100% { transform: translateX(-80px) translateY(0) rotate(0deg);}
+}
 
-    /* Animasi terbang acak untuk beberapa angsa */
-    @keyframes fly {
-        0% { transform: translateX(-100px) translateY(0) rotate(0deg);}
-        50% { transform: translateX(110vw) translateY(-30px) rotate(10deg);}
-        100% { transform: translateX(-100px) translateY(0) rotate(0deg);}
-    }
-
-    /* Variasi angsa */
-    .swan:nth-child(2) {
-        top: 50%;
-        animation-duration: 14s;
-        animation-delay: 2s;
-    }
-
-    .swan:nth-child(3) {
-        top: 45%;
-        animation-duration: 10s;
-        animation-delay: 4s;
-    }
-
-    /* Refleksi air */
-    .reflection {
-        position: absolute;
-        bottom: 0;
-        width: 200%;
-        height: 40%;
-        background: linear-gradient(to top, rgba(255,255,255,0.3), transparent);
-        border-radius: 50%;
-        animation: wave 6s ease-in-out infinite;
-        z-index: 2;
-    }
+/* Beberapa angsa dengan delay berbeda */
+.swan:nth-child(2) { top: 55%; animation-duration: 14s; animation-delay: 2s; }
+.swan:nth-child(3) { top: 45%; animation-duration: 10s; animation-delay: 4s; }
 </style>
 </head>
 <body>
     <div class="names">GUNAWAN & RAFIKAH</div>
 
-    <!-- Beberapa angsa -->
-    <div class="swan"></div>
-    <div class="swan"></div>
-    <div class="swan"></div>
+    <!-- Angsa SVG -->
+    <div class="swan">
+        <svg viewBox="0 0 64 64"><path fill="white" d="M32 4c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zM25 18c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zm14 0c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/></svg>
+    </div>
+    <div class="swan">
+        <svg viewBox="0 0 64 64"><path fill="white" d="M32 4c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zM25 18c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zm14 0c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/></svg>
+    </div>
+    <div class="swan">
+        <svg viewBox="0 0 64 64"><path fill="white" d="M32 4c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zM25 18c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7zm14 0c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/></svg>
+    </div>
 
     <div class="water"></div>
-    <div class="reflection"></div>
 </body>
 </html>
